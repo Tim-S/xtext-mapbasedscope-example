@@ -1,0 +1,27 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	elements+=AbstractElement+
+	uses+=Use*
+;
+
+AbstractElement:
+	Function | Library
+;
+
+Function:
+	'function' name= ID 
+;
+
+Library:
+	'library' name=ID '{' elements+=[AbstractElement]+ '}'
+;
+
+Use:
+	'use' element=[AbstractElement| FullyQualifiedName]
+;
+
+FullyQualifiedName:
+    ID ('.' ID)*;
