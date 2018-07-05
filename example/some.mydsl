@@ -1,0 +1,23 @@
+function func1
+function func2
+
+library lib1 {
+	func1
+} 
+
+library l2 {
+	lib1
+}
+
+library l3 {
+	func2
+}
+
+library l4 {
+	l2
+	l3
+}
+
+use lib1.func1
+use l4.l3.func2
+use l3.func2
